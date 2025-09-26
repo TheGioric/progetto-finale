@@ -1,33 +1,32 @@
 import Image from './../atoms/Image';
 import Heading from './../atoms/Heading';
 import Input from './../atoms/Input';
-import CommentList from './Commentlist'; 
+import Ratinglist from './Ratinglist'; 
 import Button from './../atoms/Button';
 import { useState, useEffect } from 'react';
 
 function Card({ id, title, artist, image }) {
-  const [comments, setComments] = useState([]);
-  const [commentInput, setCommentInput] = useState('');
+  const [ratings, setRatings] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(null);
 
   useEffect(() => {
-    const savedComments = JSON.parse(localStorage.getItem(`comments-${id}`)) || [];
-    setComments(savedComments);
+    const savedRatings = JSON.parse(localStorage.getItem(`ratings-${id}`)) || [];
+    setRatings(savedRatings);
   }, [id]);
 
-  const addComment = () => {
-    if (commentInput.trim() !== '') {
-      const newComments = [...comments, commentInput];
-      setComments(newComments);
-      localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
-      setCommentInput('');
+  const addRating = () => {
+    if (selectedRating !== null) {
+      const newRatings = [...ratings, selectedRating];
+      setRatings(newRatings);
+      localStorage.setItem(`ratings-${id}`, JSON.stringify(newRatings));
+      setSelectedRating(null);
     }
   };
 
-  const deleteComment = (index) => {
-    const newComments = comments.filter((_, i) => i !== index);
-    setComments(newComments);
-    localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
-  };
+  const deleteRating = (newRatings) => {
+  setRatings(newRatings);
+  localStorage.setItem(`ratings-${id}`, JSON.stringify(newRatings));
+};
 
   return (
     <div style={{
@@ -42,15 +41,25 @@ function Card({ id, title, artist, image }) {
       <Heading level={3}>{title}</Heading>
       <p>by {artist}</p>
 
-      <Input
-        value={commentInput}
-        onChange={(e) => setCommentInput(e.target.value)}
-        placeholder="Scrivi un commento..."
-      />
-      <Button onClick={addComment}>Aggiungi Commento</Button>
-      <CommentList comments={comments} onDelete={deleteComment} />
+      {/* Radio buttons */}
+      <div style={{ marginTop: '8px', marginBottom: '8px' }}>
+        {['Brutto', 'Decente', 'Bello', 'Meraviglioso'].map((label, index) => (
+          <label key={index} style={{ display: 'block', marginBottom: '4px' }}>
+            <input
+              type="radio"
+              value={index}
+              checked={selectedRating === index}
+              onChange={() => setSelectedRating(index)}
+              style={{ marginRight: '8px' }}
+            />
+            {label}
+          </label>
+        ))}
+      </div>
+
+      <Button onClick={addRating}>Aggiungi Voto</Button>
+      <Ratinglist ratings={ratings} onDelete={deleteRating} />
     </div>
   );
 }
-
 export default Card;
