@@ -15,13 +15,14 @@ function Card({ id, title, artist, image }) {
   }, [id]);
 
   const addRating = () => {
-    if (selectedRating !== null) {
-      const newRatings = [...ratings, selectedRating];
-      setRatings(newRatings);
-      localStorage.setItem(`ratings-${id}`, JSON.stringify(newRatings));
-      setSelectedRating(null);
-    }
-  };
+  if (selectedRating !== null) {
+    const newRatings = [...ratings, selectedRating];
+    setRatings(newRatings);
+    localStorage.setItem(`ratings-${id}`, JSON.stringify(newRatings));
+    setSelectedRating(null);
+  }
+};
+
 
   const deleteRating = (newRatings) => {
   setRatings(newRatings);
@@ -42,20 +43,22 @@ function Card({ id, title, artist, image }) {
       <p>by {artist}</p>
 
       {/* Radio buttons */}
-      <div style={{ marginTop: '8px', marginBottom: '8px' }}>
-        {['Brutto', 'Decente', 'Bello', 'Meraviglioso'].map((label, index) => (
-          <label key={index} style={{ display: 'block', marginBottom: '4px' }}>
-            <input
-              type="radio"
-              value={index}
-              checked={selectedRating === index}
-              onChange={() => setSelectedRating(index)}
-              style={{ marginRight: '8px' }}
-            />
-            {label}
-          </label>
-        ))}
-      </div>
+<div style={{ marginTop: '8px', marginBottom: '8px' }}>
+  {['Brutto', 'Decente', 'Bello', 'Meraviglioso'].map((label, index) => (
+    <label key={index} style={{ display: 'block', marginBottom: '4px' }}>
+      <input
+        type="radio"
+        name={`rating-${id}`}
+        value={index}
+        checked={selectedRating === index}
+        onChange={() => setSelectedRating(index)}
+        style={{ marginRight: '8px' }}
+      />
+      {label}
+    </label>
+  ))}
+</div>
+
 
       <Button onClick={addRating}>Aggiungi Voto</Button>
       <Ratinglist ratings={ratings} onDelete={deleteRating} />
