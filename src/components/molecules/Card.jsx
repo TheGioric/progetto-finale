@@ -9,7 +9,6 @@ function Card({ id, title, artist, image }) {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
 
-  // Carica commenti specifici per questa Card da localStorage
   useEffect(() => {
     const savedComments = JSON.parse(localStorage.getItem(`comments-${id}`)) || [];
     setComments(savedComments);
@@ -22,6 +21,12 @@ function Card({ id, title, artist, image }) {
       localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
       setCommentInput('');
     }
+  };
+
+  const deleteComment = (index) => {
+    const newComments = comments.filter((_, i) => i !== index);
+    setComments(newComments);
+    localStorage.setItem(`comments-${id}`, JSON.stringify(newComments));
   };
 
   return (
@@ -37,15 +42,13 @@ function Card({ id, title, artist, image }) {
       <Heading level={3}>{title}</Heading>
       <p>by {artist}</p>
 
-      {/* Sezione commenti */}
       <Input
         value={commentInput}
         onChange={(e) => setCommentInput(e.target.value)}
         placeholder="Scrivi un commento..."
       />
       <Button onClick={addComment}>Aggiungi Commento</Button>
-
-      <CommentList comments={comments} />
+      <CommentList comments={comments} onDelete={deleteComment} />
     </div>
   );
 }
