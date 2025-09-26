@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0d0d0d, #2a0d5e, #0d0d2a);
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
