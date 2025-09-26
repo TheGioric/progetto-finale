@@ -19,7 +19,7 @@ src/
 ├─ assets/           # Risorse statiche (immagini, icone, ecc.)
 ├─ components/
 │  ├─ atoms/         # Componenti base (Button, Input, Heading, Image)
-│  ├─ molecules/     # Combinazioni di atoms (Card, CommentList, Preview)
+│  ├─ molecules/     # Combinazioni di atoms (Card, Ratinglist, Preview)
 │  ├─ organisms/     # Combinazioni più complesse (Header, Gallery, EventSection)
 ├─ service/          # Funzioni per API, fetch dati
 ├─ App.jsx           # Componente principale
@@ -40,7 +40,7 @@ Elementi fondamentali, riutilizzabili, senza logica complessa:
 #### Molecules
 Combinazioni di atoms con logica più specifica:
 - `Card.jsx`
-- `CommentList.jsx`
+- `Ratinglist.jsx`
 - `Preview.jsx`
 
 #### Organisms
@@ -67,4 +67,5 @@ Combinazioni complesse che formano sezioni dell’interfaccia:
 - Migliorare la gestione dello stato (ad esempio con Redux o Context API).  
 - Aggiungere test unitari per i componenti.  
 - Integrare notifiche o feed in tempo reale sugli eventi e le attività degli artisti.
+
 
