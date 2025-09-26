@@ -12,21 +12,21 @@ offrendo un’esperienza interattiva e modulare grazie a componenti riutilizzabi
 - Offrire funzionalità social e informative per gli utenti interessati all’arte.
 
 ## Struttura del progetto
+
+```plaintext
 src/
 │
-├─ assets/ # Risorse statiche (immagini, icone, ecc.)
+├─ assets/           # Risorse statiche (immagini, icone, ecc.)
 ├─ components/
-│ ├─ atoms/ # Componenti base (Button, Input, Heading, Image)
-│ ├─ molecules/ # Combinazioni di atoms (Card, CommentList, Preview)
-│ ├─ organisms/ # Combinazioni più complesse (Header, Gallery, EventSection)
-├─ service/ # Funzioni per API, fetch dati
-├─ App.jsx # Componente principale
-├─ App.css # Stile globale del progetto
-├─ index.css # Stile di base
-└─ main.jsx # Entry point dell'app
-
-markdown
-Copia codice
+│  ├─ atoms/         # Componenti base (Button, Input, Heading, Image)
+│  ├─ molecules/     # Combinazioni di atoms (Card, CommentList, Preview)
+│  ├─ organisms/     # Combinazioni più complesse (Header, Gallery, EventSection)
+├─ service/          # Funzioni per API, fetch dati
+├─ App.jsx           # Componente principale
+├─ App.css           # Stile globale del progetto
+├─ index.css         # Stile di base
+└─ main.jsx          # Entry point dell'app
+```
 
 ### Dettaglio dei componenti principali
 
@@ -67,3 +67,4 @@ Combinazioni complesse che formano sezioni dell’interfaccia:
 - Migliorare la gestione dello stato (ad esempio con Redux o Context API).  
 - Aggiungere test unitari per i componenti.  
 - Integrare notifiche o feed in tempo reale sugli eventi e le attività degli artisti.
+
